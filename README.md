@@ -1,1 +1,1 @@
-# Animal-GIFs
+# Animal-Giphy
