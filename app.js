@@ -17,7 +17,7 @@ function displayAnimalGifs() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-
+    // LOGGED ==============
     console.log(queryURL);
     console.log(response.data);
     console.log(response.data[0].images.fixed_height_still.url);
@@ -29,25 +29,37 @@ function displayAnimalGifs() {
       var p = $("<p>").text("Rating: " + results[i].rating);
       // Creating and storing an image tag
       var animalImage = $("<img>");
+
       // Setting the src attribute of the image to a property pulled off the result item
+
       animalImage.attr("src", results[i].images.fixed_height_still.url);
-
-      animalImage.attr("data-still", results[i].images.fixed_height_still.url);
-
-      animalImage.attr("data-animate", results[i].images.fixed_height.url);
-
       animalImage.attr("data-state", "still");
+      animalImage.attr("data-still", results[i].images.fixed_height_still.url);
+      animalImage.attr("data-animate", results[i].images.fixed_height.url);
+      animalImage.attr("class", "gif");
 
-      $('#animals').append(p);
-      $('#animals').append(animalImage); // ******* consider using es6 .html() method (as shown by will) ***********
+
+      $('#animals').prepend(p);
+      $('#animals').prepend(animalImage); // ******* consider using es6 .html() method (as shown by will) ***********
     }
-
   });
-
 }
 
-function clickToPlay() {
- // EMPTY
+// this function will be called in a click event
+function changeGifState() {
+  // "data-state" can be either: "still" or "animate"
+  // here "this" refers to the object of the click event - in this case - the displayed GIF/image
+  var state = $(this).attr("data-state");
+  var animateGif = $(this).attr("data-animate");
+  var stillGif = $(this).attr("data-still");
+
+  if (state === "still") {
+    $(this).attr("src", animateGif);
+    $(this).attr(state, "animate");
+  } else {
+    $(this).attr("src", stillGif);
+    $(this).attr(state, "still");
+  }
 }
 
 
@@ -90,6 +102,7 @@ $("#addAnimal").on("click", function(event) {
 });
 
 $(document).on("click", ".animal", displayAnimalGifs);
+$(document).on("click", ".gif", changeGifState);
 
 renderButtons();
 
