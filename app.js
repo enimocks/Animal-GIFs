@@ -1,3 +1,5 @@
+$(document).ready(function() {
+
 // VARIABLES
 // =============================================================================================
 var animalsArr = ["wolf", "eagle", "leopard", "mountain goat", "shark", "dolphin", "dog"];
@@ -7,7 +9,9 @@ var animalsArr = ["wolf", "eagle", "leopard", "mountain goat", "shark", "dolphin
 // =============================================================================================
 function displayAnimalGifs() {
   var animal = $(this).attr("data-name");
-  var queryURL = `https://api.giphy.com/v1/gifs/search?q=${animal}&api_key=QOs5UwUNB92cGzHglrKf0ueiYv5Fu4J9&limit=5`;
+  var rating = "pg";
+  var limit = 10;
+  var queryURL = `https://api.giphy.com/v1/gifs/search?q=${animal}&api_key=QOs5UwUNB92cGzHglrKf0ueiYv5Fu4J9&rating=${rating}&limit=${limit}`;
 
   $.ajax({
     url: queryURL,
@@ -16,7 +20,7 @@ function displayAnimalGifs() {
 
     console.log(queryURL);
     console.log(response.data);
-    console.log(response.data[0].images.fixed_height.url);
+    console.log(response.data[0].images.fixed_height_still.url);
 
     var results = response.data;
 
@@ -26,10 +30,16 @@ function displayAnimalGifs() {
       // Creating and storing an image tag
       var animalImage = $("<img>");
       // Setting the src attribute of the image to a property pulled off the result item
-      animalImage.attr("src", results[i].images.fixed_height.url);
+      animalImage.attr("src", results[i].images.fixed_height_still.url);
 
-      $('#animals').prepend(p);
-      $('#animals').prepend(animalImage);
+      animalImage.attr("data-still", results[i].images.fixed_height_still.url);
+
+      animalImage.attr("data-animate", results[i].images.fixed_height.url);
+
+      animalImage.attr("data-state", "still");
+
+      $('#animals').append(p);
+      $('#animals').append(animalImage); // ******* consider using es6 .html() method (as shown by will) ***********
     }
 
   });
@@ -37,8 +47,9 @@ function displayAnimalGifs() {
 }
 
 function clickToPlay() {
-
+ // EMPTY
 }
+
 
 function renderButtons() {
 
@@ -70,6 +81,8 @@ $("#addAnimal").on("click", function(event) {
 
   // The movie from the textbox is then added to our array
   animalsArr.push(animal);
+  // Clears text input after submission of new button
+  $("#animal-input").val("");
 
   // Calling renderButtons which handles the processing of our animal array
   renderButtons();
@@ -79,3 +92,5 @@ $("#addAnimal").on("click", function(event) {
 $(document).on("click", ".animal", displayAnimalGifs);
 
 renderButtons();
+
+});
