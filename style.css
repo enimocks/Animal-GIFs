@@ -1,0 +1,31 @@
+img {
+  cursor: pointer;
+}
+
+button,
+#addAnimal {
+  padding: 10px 15px;
+  background-color: rgb(56, 148, 148);
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  margin: 5px;
+}
+
+form {
+  float: right;
+  margin-right: 50px;
+}
+
+label {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+}
+
+#animal-input {
+  height: 20px;
+  width: 100%;
+  border: 2px solid rgb(231, 226, 226);
+  margin: 5px 0;
+  font-size: 16px;
+}
