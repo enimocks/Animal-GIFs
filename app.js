@@ -38,7 +38,6 @@ function displayAnimalGifs() {
       animalImage.attr("data-animate", results[i].images.fixed_height.url);
       animalImage.addClass("gif");
 
-
       $('#animals').prepend(p);
       $('#animals').prepend(animalImage);
     }
