@@ -4,14 +4,22 @@ img {
   margin: 1rem
 }
 
-button,
-#addAnimal {
+button {
   padding: 10px 15px;
   background-color: rgb(56, 148, 148);
   border-radius: 10px;
   color: white;
   font-size: 16px;
   margin: 5px;
+}
+
+#addAnimal {
+  padding: 10px 15px;
+  background-color: rgb(56, 148, 148);
+  border-radius: 10px;
+  color: white;
+  font-size: 16px;
+  margin: 5px 0;
 }
 
 form {
