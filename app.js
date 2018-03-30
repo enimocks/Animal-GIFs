@@ -36,17 +36,17 @@ function displayAnimalGifs() {
       animalImage.attr("data-state", "still");
       animalImage.attr("data-still", results[i].images.fixed_height_still.url);
       animalImage.attr("data-animate", results[i].images.fixed_height.url);
-      animalImage.attr("class", "gif");
+      animalImage.addClass("gif");
 
 
       $('#animals').prepend(p);
-      $('#animals').prepend(animalImage); // ******* consider using es6 .html() method (as shown by will) ***********
+      $('#animals').prepend(animalImage);
     }
   });
 }
 
 // this function will be called in a click event
-function changeGifState() {
+function toggleGifState() {
   // "data-state" can be either: "still" or "animate"
   // here "this" refers to the object of the click event - in this case - the displayed GIF/image
   var state = $(this).attr("data-state");
@@ -55,10 +55,11 @@ function changeGifState() {
 
   if (state === "still") {
     $(this).attr("src", animateGif);
-    $(this).attr(state, "animate");
-  } else {
+    $(this).attr("data-state", "animate");
+  }
+  else if (state === "animate") {
     $(this).attr("src", stillGif);
-    $(this).attr(state, "still");
+    $(this).attr("data-state", "still");
   }
 }
 
@@ -102,7 +103,7 @@ $("#addAnimal").on("click", function(event) {
 });
 
 $(document).on("click", ".animal", displayAnimalGifs);
-$(document).on("click", ".gif", changeGifState);
+$(document).on("click", ".gif", toggleGifState);
 
 renderButtons();
 
