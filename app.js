@@ -30,6 +30,9 @@ function displayAnimalGifs() {
       // Creating and storing an image tag
       var animalImage = $("<img>");
 
+      var display = $("<div>");
+      display.addClass("display");
+
       // Setting the src attribute of the image to a property pulled off the result item
 
       animalImage.attr("src", results[i].images.fixed_height_still.url);
@@ -38,8 +41,10 @@ function displayAnimalGifs() {
       animalImage.attr("data-animate", results[i].images.fixed_height.url);
       animalImage.addClass("gif");
 
-      $('#animals').prepend(p);
-      $('#animals').prepend(animalImage);
+      display.prepend(animalImage);
+      display.prepend(p);
+
+      $("#animals").append(display);
     }
   });
 }
