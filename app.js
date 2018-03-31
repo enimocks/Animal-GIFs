@@ -2,7 +2,7 @@ $(document).ready(function() {
 
 // VARIABLES
 // =============================================================================================
-var animalsArr = ["wolf", "eagle", "leopard", "mountain goat", "shark", "dolphin", "dog"];
+var animalsArr = ["wolf", "eagle", "leopard", "mountain goat", "shark", "dolphin", "dog", "tiger", "bear", "fox", "elephant", "horse", "platypus", "alligator","monkey", "otter", "praying mantis", ];
 
 
 // FUNCTIONS
@@ -17,16 +17,15 @@ function displayAnimalGifs() {
     url: queryURL,
     method: "GET"
   }).then(function(response) {
-    // LOGGED ==============
-    console.log(queryURL);
-    console.log(response.data);
-    console.log(response.data[0].images.fixed_height_still.url);
 
     var results = response.data;
 
+    console.log(results)
+
     for (var i = 0; i < results.length; i++) {
       // Creating a paragraph tag with the result item's rating
-      var p = $("<p>").text("Rating: " + results[i].rating);
+      var pRating = $("<p>").text("Rating: " + results[i].rating);
+      var pTitle = $("<p>").text("Title: " + results[i].title);
       // Creating and storing an image tag
       var animalImage = $("<img>");
 
@@ -42,7 +41,11 @@ function displayAnimalGifs() {
       animalImage.addClass("gif");
 
       display.prepend(animalImage);
-      display.prepend(p);
+      display.prepend(pRating);
+      display.prepend(pTitle);
+
+      pTitle.css("font-weight", "b");
+
 
       $("#animals").append(display);
     }
