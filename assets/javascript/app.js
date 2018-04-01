@@ -70,7 +70,7 @@ function toggleGifState() {
   }
 }
 
-
+// this function will also be called in a click event
 function renderButtons() {
 
   // Deletes the animals prior to adding new animals (this is necessary otherwise you will have repeat buttons)
@@ -80,19 +80,19 @@ function renderButtons() {
   for (var i = 0; i < animalsArr.length; i++) {
 
     // Then dynamicaly generates buttons for each animal in the array
-    var a = $("<button>");
+    var newButton = $("<button>");
     // Adds a class of animal to our button
-    a.addClass("animal");
+    newButton.addClass("animal");
     // Added a data-attribute
-    a.attr("data-name", animalsArr[i]);
+    newButton.attr("data-name", animalsArr[i]);
     // Provided the initial button text
-    a.text(animalsArr[i]);
+    newButton.text(animalsArr[i]);
     // Added the button to the buttons-view div
-    $("#animalButtons").append(a);
+    $("#animalButtons").append(newButton);
   }
 }
 
-// EVENTS
+// EVENTS & CALLS
 // =============================================================================================
 $("#addAnimal").on("click", function(event) {
   event.preventDefault();
@@ -109,9 +109,9 @@ $("#addAnimal").on("click", function(event) {
 
 });
 
+renderButtons();
+
 $(document).on("click", ".animal", displayAnimalGifs);
 $(document).on("click", ".gif", toggleGifState);
-
-renderButtons();
 
 });

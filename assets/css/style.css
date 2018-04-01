@@ -41,7 +41,7 @@ form > label {
 
 #animal-input {
   height: 30px;
-  width: 100%;
+  width: auto;
   border: 2px solid rgb(231, 226, 226);
   margin: 5px 0;
 }
