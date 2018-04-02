@@ -2,16 +2,16 @@ $(document).ready(function() {
 
 // VARIABLES
 // =============================================================================================
-var animalsArr = ["wolf", "eagle", "leopard", "mountain goat", "shark", "dolphin", "dog", "tiger", "bear", "fox", "elephant", "horse", "platypus", "alligator","monkey", "otter", "praying mantis", ];
+var physicsArr = ["atom", "electromagnetic radiation", "boson", "galaxy", "pulsar", "quasar", "fourier transform", "solar system", "nebula", "magnetism", "fluid dynamics", "lepton", "thermodynamics"];
 
 
 // FUNCTIONS
 // =============================================================================================
-function displayAnimalGifs() {
-  var animal = $(this).attr("data-name");
+function displayPhysicsGifs() {
+  var physics = $(this).attr("data-name");
   var rating = "pg";
   var limit = 10;
-  var queryURL = `https://api.giphy.com/v1/gifs/search?q=${animal}&api_key=QOs5UwUNB92cGzHglrKf0ueiYv5Fu4J9&rating=${rating}&limit=${limit}`;
+  var queryURL = `https://api.giphy.com/v1/gifs/search?q=${physics}&api_key=QOs5UwUNB92cGzHglrKf0ueiYv5Fu4J9&rating=${rating}&limit=${limit}`;
 
   $.ajax({
     url: queryURL,
@@ -27,27 +27,27 @@ function displayAnimalGifs() {
       var pRating = $("<p>").text("Rating: " + results[i].rating);
       var pTitle = $("<p>").text("Title: " + results[i].title);
       // Creating and storing an image tag
-      var animalImage = $("<img>");
+      var physicsImage = $("<img>");
 
       var display = $("<div>");
       display.addClass("display");
 
       // Setting the src attribute of the image to a property pulled off the result item
 
-      animalImage.attr("src", results[i].images.fixed_height_still.url);
-      animalImage.attr("data-state", "still");
-      animalImage.attr("data-still", results[i].images.fixed_height_still.url);
-      animalImage.attr("data-animate", results[i].images.fixed_height.url);
-      animalImage.addClass("gif");
+      physicsImage.attr("src", results[i].images.fixed_height_still.url);
+      physicsImage.attr("data-state", "still");
+      physicsImage.attr("data-still", results[i].images.fixed_height_still.url);
+      physicsImage.attr("data-animate", results[i].images.fixed_height.url);
+      physicsImage.addClass("gif");
 
-      display.prepend(animalImage);
+      display.prepend(physicsImage);
       display.prepend(pRating);
       display.prepend(pTitle);
 
       pTitle.css("font-weight", "b");
 
 
-      $("#animals").append(display);
+      $("#physics").prepend(display);
     }
   });
 }
@@ -73,45 +73,45 @@ function toggleGifState() {
 // this function will also be called in a click event
 function renderButtons() {
 
-  // Deletes the animals prior to adding new animals (this is necessary otherwise you will have repeat buttons)
-  $("#animalButtons").empty();
+  // Deletes the gifs prior to adding new gifs (this is necessary otherwise you will have repeat buttons)
+  $("#physicsButtons").empty();
 
-  // Loops through the array of animals
-  for (var i = 0; i < animalsArr.length; i++) {
+  // Loops through the array of gifs
+  for (var i = 0; i < physicsArr.length; i++) {
 
-    // Then dynamicaly generates buttons for each animal in the array
+    // Then dynamicaly generates buttons for each gif in the array
     var newButton = $("<button>");
-    // Adds a class of animal to our button
-    newButton.addClass("animal");
+    // Adds a class of physics to our button
+    newButton.addClass("physics");
     // Added a data-attribute
-    newButton.attr("data-name", animalsArr[i]);
+    newButton.attr("data-name", physicsArr[i]);
     // Provided the initial button text
-    newButton.text(animalsArr[i]);
+    newButton.text(physicsArr[i]);
     // Added the button to the buttons-view div
-    $("#animalButtons").append(newButton);
+    $("#physicsButtons").append(newButton);
   }
 }
 
 // EVENTS & CALLS
 // =============================================================================================
-$("#addAnimal").on("click", function(event) {
+$("#addButton").on("click", function(event) {
   event.preventDefault();
   // This line of code will grab the input from the textbox
-  var animal = $("#animal-input").val().trim();
+  var physics = $("#physics-input").val().trim();
 
   // The movie from the textbox is then added to our array
-  animalsArr.push(animal);
+  physicsArr.push(physics);
   // Clears text input after submission of new button
-  $("#animal-input").val("");
+  $("#physics-input").val("");
 
-  // Calling renderButtons which handles the processing of our animal array
+  // Calling renderButtons which handles the processing of our physics terms array
   renderButtons();
 
 });
 
 renderButtons();
 
-$(document).on("click", ".animal", displayAnimalGifs);
+$(document).on("click", ".physics", displayPhysicsGifs);
 $(document).on("click", ".gif", toggleGifState);
 
 });
