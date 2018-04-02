@@ -1,8 +1,19 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Bangers', sans-serif, cursive;
   font-size: 20px;
   margin: 5px 5px;
   background-image: url(../images/wormz.png);
+  letter-spacing: 1px;
+}
+
+h1 {
+  color: rgb(56, 148, 148);
+  margin: 5px;
+}
+
+body > p {
+  font-size: 24px;
+  margin: 5px;
 }
 
 img {
@@ -17,6 +28,7 @@ button {
   border-radius: 10px;
   color: white;
   margin: 5px;
+  letter-spacing: 1px;
   cursor: pointer;
 }
 
@@ -27,6 +39,7 @@ button {
   color: white;
   margin: 5px 0;
   cursor: pointer;
+  letter-spacing: 1px;
 }
 
 form {
@@ -35,7 +48,8 @@ form {
 }
 
 label {
-  font-size: 18px;
+  font-size: 20px;
+  color: rgb(25, 107, 107);
 }
 
 form > label {
@@ -45,7 +59,7 @@ form > label {
 #physics-input {
   height: 30px;
   width: auto;
-  border: 2px solid rgb(231, 226, 226);
+  border: 2px solid rgb(228, 224, 224);
   margin: 5px 0;
 }
 
