@@ -11,9 +11,17 @@ h1 {
   margin: 5px;
 }
 
+h2 {
+  margin: 0.5em 0;
+}
+
 body > p {
   font-size: 24px;
   margin: 5px;
+}
+
+.display:first-child {
+  margin-top: 0;
 }
 
 img {

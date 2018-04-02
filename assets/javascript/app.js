@@ -46,9 +46,9 @@ function displayPhysicsGifs() {
 
       pTitle.css("font-weight", "b");
 
-
       $("#physics").prepend(display);
     }
+    $("#instructions").html("<h2>Click on a GIF to play it, click it again to pause it.</h2>");
   });
 }
 
